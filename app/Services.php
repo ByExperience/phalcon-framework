@@ -1,6 +1,7 @@
 <?php
 
 use Phalcon\Mvc\View;
+use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\Url as UrlProvider;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
@@ -10,19 +11,23 @@ use Phalcon\Cache\Backend\File as BackFile;
 use Phalcon\Cache\Frontend\Data as FrontData;
 use Phalcon\Logger\Adapter\File as LoggerFile;
 use Phalcon\Mvc\Model\Metadata\Files as MetaData;
-use Phalcon\Mvc\Router;
 
+/**
+ * 自动注册的服务
+ *
+ * Class Services
+ */
 class Services extends \Base\Services {
 
     /**
-     * We register the events manager
+     * 注册分发器
+     *
+     * @return Dispatcher
      */
     protected function initDispatcher() {
         $eventsManager = new EventsManager;
 
-        /**
-         * Handle exceptions and not-found exceptions using NotFoundPlugin
-         */
+        //使用NotFoundPlugin插件抛出未找到异常
         $eventsManager->attach('dispatch:beforeException', new NotFoundPlugin);
 
         $dispatcher = new Dispatcher;
@@ -33,7 +38,9 @@ class Services extends \Base\Services {
     }
 
     /**
-     * The URL component is used to generate all kind of urls in the application
+     * 注册Url组件
+     *
+     * @return UrlProvider
      */
     protected function initUrl() {
         $url = new UrlProvider();
@@ -43,7 +50,7 @@ class Services extends \Base\Services {
     }
 
     /**
-     * init view
+     * 注册视图组件
      *
      * @return View
      */
@@ -62,7 +69,7 @@ class Services extends \Base\Services {
 
 
     /**
-     * Setting up volt
+     * 设置视图模板
      *
      * @param $view
      * @param $di
@@ -82,10 +89,12 @@ class Services extends \Base\Services {
     }
 
     /**
-     * Database connection is created based in the parameters defined in the configuration file
+     * 根据配置连接数据库
+     *
+     * @return object
      */
     protected function initDb() {
-        \Phalcon\Mvc\Model::setup([
+        Phalcon\Mvc\Model::setup([
             'notNullValidations' => false
         ]);
         $config = $this->get('config')->get('database')->toArray();
@@ -98,7 +107,9 @@ class Services extends \Base\Services {
 
 
     /**
-     * If the configuration specify the use of metadata adapter use it or use memory otherwise
+     * 缓存表结构
+     *
+     * @return MetaData
      */
     protected function initModelsMetadata() {
         return new MetaData([
@@ -108,7 +119,9 @@ class Services extends \Base\Services {
 
 
     /**
-     * Register the flash service with custom CSS classes
+     * 注册提示信息输出服务
+     *
+     * @return FlashDirect
      */
     protected function initFlash() {
         return new FlashDirect([
@@ -121,6 +134,8 @@ class Services extends \Base\Services {
 
     /**
      * 注册日志记录
+     *
+     * @return LoggerFile
      */
     public function initLogger() {
         return new LoggerFile(APP_PATH . "/app/logs/errors.log");
@@ -146,6 +161,8 @@ class Services extends \Base\Services {
     }
 
     /**
+     * 注册路由组件
+     *
      * @return Router
      */
     public function initRouter() {
@@ -154,15 +171,13 @@ class Services extends \Base\Services {
         $router->setDefaultModule("rm");
 
         /**
-         *
-         * 设置默认访问 /rm/index/index
-         *
+         * 设置默认访问 /crm/index/index
          */
         $router->add('/', [
-            'module'     => 'rm',
+            'module'     => 'crm',
             'controller' => 'index',
             'action'     => 'index',
-        ])->setName('rm');
+        ])->setName('crm');
 
         /**
          * 默认模块

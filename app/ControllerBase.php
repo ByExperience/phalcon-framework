@@ -1,24 +1,34 @@
 <?php
 
 use Phalcon\Mvc\Controller;
+use Phalcon\Http\Request;
 
-use \Phalcon\Http\Request;
-
+/**
+ * 控制器基类
+ *
+ * Class ControllerBase
+ */
 class ControllerBase extends Controller {
+
+    /**
+     * 请求对象
+     *
+     * @var Request
+     */
     protected $_request;
 
     /**
      * 初始化
      */
     public function initialize() {
+        //设置模板视图的通用标题
         $this->tag->prependTitle('');
-
     }
 
     /**
-     * 输出json响应
+     * 返回JSON响应
      *
-     * @param $data
+     * @param array $data
      * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
      */
     protected function outputJson($data) {
@@ -30,7 +40,7 @@ class ControllerBase extends Controller {
     }
 
     /**
-     * 获取request对象
+     * 获取请求对象
      *
      * @return Request
      */

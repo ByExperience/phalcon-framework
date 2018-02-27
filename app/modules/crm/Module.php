@@ -6,6 +6,13 @@ use Phalcon\DiInterface;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 
 
+/**
+ * 示例 crm 模块
+ *
+ * Class Module
+ *
+ * @package Crm
+ */
 class Module implements ModuleDefinitionInterface {
     /**
      * Registers the modules auto-loader
