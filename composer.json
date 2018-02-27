@@ -1,0 +1,16 @@
+{
+    "name": "hbyc/phalcon",
+    "description": "A framework template made of Phalcon",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "~5.3|~6.0"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}
