@@ -38,6 +38,7 @@ class NotFoundPlugin extends Plugin {
                         'controller' => 'errors',
                         'action' => 'show404'
                     ));
+
                     return false;
             }
         }
@@ -51,6 +52,7 @@ class NotFoundPlugin extends Plugin {
             'controller' => 'errors',
             'action' => 'show500'
         ));
+
         return false;
     }
 }

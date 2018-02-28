@@ -30,8 +30,8 @@ crashlytics-build.properties
 fabric.properties
 
 ### Phalcon template
-/cache/
-/config/development/
+# /cache/
+# /config/development/
 
 ### SVN template
 .svn/
