@@ -32,7 +32,6 @@ class Services extends \Base\Services {
 
         $dispatcher = new Dispatcher;
         $dispatcher->setEventsManager($eventsManager);
-        $dispatcher->setDefaultNamespace('Rm\Controllers\\');
 
         return $dispatcher;
     }
@@ -57,7 +56,7 @@ class Services extends \Base\Services {
     protected function initView() {
         $view = new View();
 
-        $view->setViewsDir(APP_PATH . '/app/modules/rm/views');
+        $view->setViewsDir(APP_PATH . '/app/views');
         $view->setLayoutsDir(APP_PATH . '/app/views/layouts/');
         $view->setTemplateAfter('main');
         $view->registerEngines([
@@ -171,40 +170,16 @@ class Services extends \Base\Services {
         $router->setDefaultModule("rm");
 
         /**
-         * 设置默认访问 /crm/index/index
+         * 设置默认访问 /index/index
          */
         $router->add('/', [
-            'module'     => 'crm',
             'controller' => 'index',
-            'action'     => 'index',
-        ])->setName('crm');
+            'action' => 'index',
+        ]);
 
-        /**
-         * 默认模块
-         * 匹配没有定义模块，访问到 crm 模块下
-         */
         $router->add('/:controller/:action', [
-            'module'     => 'crm',
             'controller' => 1,
-            'action'     => 2,
-        ])->setName('crm');
-
-        /**
-         * 设置 crm 模块路由访问
-         */
-        $router->add('/crm/:controller/:action', [
-            'module'     => 'crm',
-            'controller' => 1,
-            'action'     => 2,
-        ])->setName('crm');
-
-        /**
-         * 设置404
-         */
-        $router->notFound( [
-            'module'     => '',
-            'controller' => '',
-            'action'     => '',
+            'action' => 2,
         ]);
 
         return $router;

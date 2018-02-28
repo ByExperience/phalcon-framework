@@ -16,17 +16,8 @@ $loader->registerDirs([
  */
 $loader->registerClasses([
     'Services' => APP_PATH . '/app/Services.php',
-    'ControllerBase' =>  APP_PATH . '/app/ControllerBase.php'
+    'ControllerBase' =>  APP_PATH . '/app/controllers/ControllerBase.php'
 ]);
-
-/**
- * 注册命名空间
- */
-$loader->registerNamespaces(
-    [
-        'Crm\Controllers' => APP_PATH . '/app/modules/crm/controllers/',
-    ]
-);
 
 /**
  * 引入composer

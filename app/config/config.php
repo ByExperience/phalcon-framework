@@ -23,9 +23,7 @@ return new \Phalcon\Config([
         'libraryDir' => APP_PATH . '/app/library/',
         'cacheDir' => APP_PATH . '/cache/',
         'cacheLifeTime' => 172800,
-        'cacheStatsKey' => '_PHCM_MM',
-        'taskDir' => APP_PATH . '/app/tasks/',
-        'baseUri' => '/project/pc_uc/src/',
+        'baseUri' => '/',
         'debug' => true,
     ],
     //其他配置
