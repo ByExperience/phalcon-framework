@@ -1,12 +1,27 @@
 {
     "name": "hbyc/phalcon",
     "description": "A framework template made of Phalcon",
+    "keywords": [
+        "php",
+        "php-framework",
+        "phalcon"
+    ],
+    "homepage": "https://github.com/huobanyangche/phalcon-framework",
+    "time": "2018-02-27",
     "type": "project",
     "license": "MIT",
     "require": {
         "php": ">=7.1",
         "guzzlehttp/guzzle": "~5.3|~6.0"
     },
+    "authors": [
+        {
+            "name": "Li Luoao",
+            "email": "liluoao@qq.com",
+            "homepage": "https://github.com/liluoao",
+            "role": "Developer"
+        }
+    ],
     "repositories": {
         "packagist": {
             "type": "composer",
