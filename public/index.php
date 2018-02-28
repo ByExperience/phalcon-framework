@@ -17,16 +17,6 @@ try {
      */
     $application = new \Phalcon\Mvc\Application(new Services($config));
 
-    // 注册模块
-    $application->registerModules(
-        [
-            "crm" => [
-                "className" => "Crm\\Module",
-                "path" => APP_PATH . "/app/modules/crm/Module.php",
-            ]
-        ]
-    );
-
     /**
      * 发送响应
      */
