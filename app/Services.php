@@ -56,9 +56,14 @@ class Services extends \Base\Services {
     protected function initView() {
         $view = new View();
 
-        $view->setViewsDir(APP_PATH . '/app/views');
-        $view->setLayoutsDir(APP_PATH . '/app/views/layouts/');
+        $appConfig = $this->get('config')->application;
+        //设置视图文件夹
+        $view->setViewsDir($appConfig->viewsDir);
+        //设置布局文件夹
+        $view->setLayoutsDir($appConfig->layoutDir);
+        //设置模板
         $view->setTemplateAfter('main');
+        //设置视图引擎
         $view->registerEngines([
             ".volt" => 'volt'
         ]);
@@ -78,7 +83,7 @@ class Services extends \Base\Services {
         $volt = new VoltEngine($view, $di);
 
         $volt->setOptions([
-            "compiledPath" => APP_PATH . "/cache/volt/"
+            "compiledPath" => $this->get('config')->application->cacheVoltDir
         ]);
 
         $compiler = $volt->getCompiler();
@@ -112,7 +117,7 @@ class Services extends \Base\Services {
      */
     protected function initModelsMetadata() {
         return new MetaData([
-            'metaDataDir' => APP_PATH . '/cache/metadata/'
+            'metaDataDir' => $this->get('config')->application->cacheMetaDataDir
         ]);
     }
 
@@ -166,8 +171,6 @@ class Services extends \Base\Services {
      */
     public function initRouter() {
         $router = new Router();
-
-        $router->setDefaultModule("rm");
 
         /**
          * 设置默认访问 /index/index

@@ -33,11 +33,10 @@ class NotFoundPlugin extends Plugin {
                 case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
                 case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
 
-                    $dispatcher->forward(array(
-                        'namespace' => 'Rm\Controllers',
+                    $dispatcher->forward([
                         'controller' => 'errors',
                         'action' => 'show404'
-                    ));
+                    ]);
 
                     return false;
             }
@@ -47,11 +46,10 @@ class NotFoundPlugin extends Plugin {
         $di->getShared('output')->sendExceptionOutput();
 
 
-        $dispatcher->forward(array(
-            'namespace' => 'Rm\Controllers',
+        $dispatcher->forward([
             'controller' => 'errors',
             'action' => 'show500'
-        ));
+        ]);
 
         return false;
     }
