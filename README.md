@@ -1,10 +1,10 @@
 # Phalcon
 
-[![Packagist](https://img.shields.io/packagist/v/hbyc/phalcon.svg?style=flat-square)](https://packagist.org/packages/hbyc/phalcon)
+[![Packagist](https://img.shields.io/packagist/v/liluoao/phalcon.svg?style=flat-square)](https://packagist.org/packages/liluoao/phalcon)
 
 ### 安装本库
 ```shell
-composer create-project hbyc/phalcon
+composer create-project liluoao/phalcon
 ```
 
 ### 安装Phalcon
